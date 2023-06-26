@@ -14,14 +14,13 @@ type App struct {
 }
 
 func (a *App) Initialize(user, password, host, dbname string) {
-    connectionString :=
-        "postgres://" + user + ":" + password + "@" + host + "/" + dbname + "?sslmode=disable"
-
+    connectionString := a.DBConnectionString(user, password, host, dbname)
     var err error
     a.DB, err = sql.Open("postgres", connectionString)
     if err != nil {
         log.Fatal(err)
     }
+	
 
     a.Router = echo.New()
     a.initializeRoutes()
@@ -39,3 +38,10 @@ func (a *App) initializeRoutes() {
     a.Router.DELETE("/todo/:id", a.deleteTodoHandler)
 	a.Router.GET("/health", a.healthCheckHandler)
 }
+
+func (a *App) DBConnectionString (user, password, host, dbname string) string {
+	
+	return "postgres://" + user + ":" + password + "@" + host + "/" + dbname + "?sslmode=disable"
+
+}
+

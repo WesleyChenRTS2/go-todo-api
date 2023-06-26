@@ -13,7 +13,8 @@ This is a TODO app implemented in Go using the Echo web framework and a SQL data
 3. Set up the database:
 
 - Create a PostgreSQL database.
-- Update the database connection details in the `config.go` file.
+- Update the database connection details in the `dbconf.yml` file.
+- run migrations `goose -dir db/migrations postgres "$(go run db/readconf.go)" up`
 
 4. Build and run the app:
 
