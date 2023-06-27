@@ -7,5 +7,11 @@ CREATE TABLE IF NOT EXISTS todos (
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+-- Seed the database with examples
+INSERT INTO todos (title, completed) VALUES
+  ('Example 1', FALSE),
+  ('Example 2', TRUE),
+  ('Example 3', FALSE);
+
 -- +goose Down
 DROP TABLE IF EXISTS todos;
