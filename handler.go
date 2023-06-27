@@ -8,15 +8,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// createTodoHandler godoc
-// @Summary Show the status of server.
-// @Description get the status of server.
-// @Tags root
-// @Accept */*
+// CreateTodoHandler godoc
+// @Summary Create a new TODO
+// @Description Create a new TODO with the input payload
+// @Tags todo
+// @Accept json
 // @Produce json
-// @Success 200 {object} map[string]interface{}
-// @Router / [get]
-
+// @Param data body TodoPayloadBody true "Create TODO"
+// @Success 201 {object} Todo
+// @Router /todos [post]
 func (a *App) createTodoHandler(c echo.Context) error {
 	var t Todo
 	if err := c.Bind(&t); err != nil {
@@ -30,7 +30,15 @@ func (a *App) createTodoHandler(c echo.Context) error {
 	return c.JSON(http.StatusCreated, t)
 }
 
-// Get a single TODO
+// GetTodoHandler godoc
+// @Summary Get a single TODO by ID
+// @Description Get specific TODO details by ID
+// @Tags todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Success 200 {object} Todo
+// @Router /todos/{id} [get]
 func (a *App) getTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
@@ -50,7 +58,14 @@ func (a *App) getTodoHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, t)
 }
 
-// Get all TODOs
+// GetTodosHandler godoc
+// @Summary Get all TODOs
+// @Description Get all TODOs
+// @Tags todo
+// @Accept json
+// @Produce json
+// @Success 200 {array} Todo
+// @Router /todos [get]
 func (a *App) getTodosHandler(c echo.Context) error {
 	todos, err := getTodos(a.DB)
 	if err != nil {
@@ -60,7 +75,16 @@ func (a *App) getTodosHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, todos)
 }
 
-// Update a TODO
+// UpdateTodoHandler godoc
+// @Summary Update a TODO
+// @Description Update a TODO with the input payload
+// @Tags todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Param todo body TodoPayloadBody true "Update TODO"
+// @Success 200 {object} Todo
+// @Router /todos/{id} [put]
 func (a *App) updateTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
@@ -80,7 +104,15 @@ func (a *App) updateTodoHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, t)
 }
 
-// Delete a TODO
+// DeleteTodoHandler godoc
+// @Summary Delete a TODO
+// @Description Delete a TODO by ID
+// @Tags todo
+// @Accept json
+// @Produce json
+// @Param id path int true "Todo ID"
+// @Success 200 {object} map[string]interface{}
+// @Router /todos/{id} [delete]
 func (a *App) deleteTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
