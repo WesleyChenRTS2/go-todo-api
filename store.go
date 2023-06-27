@@ -12,6 +12,11 @@ type Todo struct {
     UPDATED_AT string `json:"updated_at"`
 }
 
+type TodoPayloadBody struct {
+    Title     string `json:"title"`
+    Completed bool   `json:"completed"`
+}
+
 func getTodos(db *sql.DB) ([]Todo, error) {
     rows, err := db.Query("SELECT * FROM todos")
 

@@ -1,0 +1,155 @@
+basePath: /
+definitions:
+  main.Todo:
+    properties:
+      completed:
+        type: boolean
+      created_at:
+        type: string
+      id:
+        type: integer
+      title:
+        type: string
+      updated_at:
+        type: string
+    type: object
+  main.TodoPayloadBody:
+    properties:
+      completed:
+        type: boolean
+      title:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample server Echo Swagger server for TODO API.
+  title: Echo Swagger TODO API
+  version: "1.0"
+paths:
+  /health:
+    get:
+      consumes:
+      - '*/*'
+      description: get the status of server.
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Show the status of server.
+      tags:
+      - root
+  /todo:
+    post:
+      consumes:
+      - application/json
+      description: Create a new TODO with the input payload
+      parameters:
+      - description: Create TODO
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/main.TodoPayloadBody'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/main.Todo'
+      summary: Create a new TODO
+      tags:
+      - todo
+  /todo/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Delete a TODO by ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Delete a TODO
+      tags:
+      - todo
+    get:
+      consumes:
+      - application/json
+      description: Get specific TODO details by ID
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Todo'
+      summary: Get a single TODO by ID
+      tags:
+      - todo
+    put:
+      consumes:
+      - application/json
+      description: Update a TODO with the input payload
+      parameters:
+      - description: Todo ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: Update TODO
+        in: body
+        name: todo
+        required: true
+        schema:
+          $ref: '#/definitions/main.TodoPayloadBody'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Todo'
+      summary: Update a TODO
+      tags:
+      - todo
+  /todos:
+    get:
+      consumes:
+      - application/json
+      description: Get all TODOs
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/main.Todo'
+            type: array
+      summary: Get all TODOs
+      tags:
+      - todo
+schemes:
+- http
+swagger: "2.0"
