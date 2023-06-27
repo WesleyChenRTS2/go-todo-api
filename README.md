@@ -19,6 +19,11 @@ This is a TODO app implemented in Go using the Echo web framework and a SQL data
 
 The app will start running on http://localhost:8080.
 
+## Swagger
+
+1. To use Swagger, go to http://localhost:8080/swagger/index.html
+2. To update the Swagger documentation, run `swag init -g main.go  --output docs/echoapi`
+
 ## Endpoints
 
 ### Create a new todo
@@ -64,6 +69,7 @@ The following dependencies are used in this project:
 - `github.com/labstack/echo/v4`: Web framework for building the RESTful API.
 - `github.com/lib/pq`: PostgreSQL driver for Go's database/sql package.
 - `github.com/cosmtrek/air`: Live reloading for Go in developement
+- `github.com/swaggo/echo-swagger`: Swagger middleware for Echo. Setup with this tutorial: [Link](https://medium.com/geekculture/tutorial-generate-swagger-specification-and-swaggerui-for-echo-go-web-framework-3ac33afc77e2)
 
 ## Contributing
 
