@@ -8,7 +8,15 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
-// Create a new TODO
+// createTodoHandler godoc
+// @Summary Show the status of server.
+// @Description get the status of server.
+// @Tags root
+// @Accept */*
+// @Produce json
+// @Success 200 {object} map[string]interface{}
+// @Router / [get]
+
 func (a *App) createTodoHandler(c echo.Context) error {
 	var t Todo
 	if err := c.Bind(&t); err != nil {
@@ -103,6 +111,14 @@ func getTodoByID(db *sql.DB, id int) (Todo, error) {
 	return t, err
 }
 
+// HealthCheck godoc
+// @Summary Show the status of server.
+// @Description get the status of server.
+// @Tags root
+// @Accept */*
+// @Produce json
+// @Success 200 {object} map[string]interface{}
+// @Router /health [get]
 func (a *App) healthCheckHandler(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]string{"message": "OK"})
 }
