@@ -40,31 +40,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/todos": {
-            "get": {
-                "description": "Get all TODOs",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "todo"
-                ],
-                "summary": "Get all TODOs",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/main.Todo"
-                            }
-                        }
-                    }
-                }
-            },
+        "/todo": {
             "post": {
                 "description": "Create a new TODO with the input payload",
                 "consumes": [
@@ -98,7 +74,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/todos/{id}": {
+        "/todo/{id}": {
             "get": {
                 "description": "Get specific TODO details by ID",
                 "consumes": [
@@ -195,6 +171,32 @@ const docTemplate = `{
                         "schema": {
                             "type": "object",
                             "additionalProperties": true
+                        }
+                    }
+                }
+            }
+        },
+        "/todos": {
+            "get": {
+                "description": "Get all TODOs",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "todo"
+                ],
+                "summary": "Get all TODOs",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.Todo"
+                            }
                         }
                     }
                 }

@@ -16,7 +16,7 @@ import (
 // @Produce json
 // @Param data body TodoPayloadBody true "Create TODO"
 // @Success 201 {object} Todo
-// @Router /todos [post]
+// @Router /todo [post]
 func (a *App) createTodoHandler(c echo.Context) error {
 	var t Todo
 	if err := c.Bind(&t); err != nil {
@@ -38,7 +38,7 @@ func (a *App) createTodoHandler(c echo.Context) error {
 // @Produce json
 // @Param id path int true "Todo ID"
 // @Success 200 {object} Todo
-// @Router /todos/{id} [get]
+// @Router /todo/{id} [get]
 func (a *App) getTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
@@ -84,7 +84,7 @@ func (a *App) getTodosHandler(c echo.Context) error {
 // @Param id path int true "Todo ID"
 // @Param todo body TodoPayloadBody true "Update TODO"
 // @Success 200 {object} Todo
-// @Router /todos/{id} [put]
+// @Router /todo/{id} [put]
 func (a *App) updateTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
@@ -112,7 +112,7 @@ func (a *App) updateTodoHandler(c echo.Context) error {
 // @Produce json
 // @Param id path int true "Todo ID"
 // @Success 200 {object} map[string]interface{}
-// @Router /todos/{id} [delete]
+// @Router /todo/{id} [delete]
 func (a *App) deleteTodoHandler(c echo.Context) error {
 	id, err := getTodoID(c)
 	if err != nil {
