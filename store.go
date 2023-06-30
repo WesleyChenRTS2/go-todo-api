@@ -2,14 +2,12 @@ package main
 
 import (
 	"database/sql"
+
+	"github.com/WesleyChenRTS2/go-todo-api/models"
 )
 
 type Todo struct {
-    ID        int    `json:"id"`
-    Title     string `json:"title"`
-    Completed bool   `json:"completed"`
-    CREATED_AT string `json:"created_at"`
-    UPDATED_AT string `json:"updated_at"`
+	models.Todos
 }
 
 type TodoPayloadBody struct {

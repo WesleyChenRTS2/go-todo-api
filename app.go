@@ -6,9 +6,8 @@ import (
 
 	_ "github.com/WesleyChenRTS2/go-todo-api/docs/echoapi"
 	"github.com/labstack/echo/v4"
-	echoSwagger "github.com/swaggo/echo-swagger"
-
 	_ "github.com/lib/pq"
+	echoSwagger "github.com/swaggo/echo-swagger"
 )
 
 type App struct {
@@ -44,6 +43,11 @@ func (a *App) initializeRoutes() {
 	a.Router.GET("/health", a.healthCheckHandler)
     a.Router.GET("/swagger/*", echoSwagger.WrapHandler)
 
+   
+        // todo := models.Todos{ID: 1, Title: "My first todo"}
+        // fmt.Println(todo.Title)
+   
+    
 }
 
 func (a *App) DBConnectionString (user, password, host, dbname string) string {
